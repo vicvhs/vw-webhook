@@ -21,7 +21,7 @@ app.post('/api', function (req, res) {
   deploy(res, './api.sh')
   const send = require('gmail-send')({
       user: 'visiblidadweb8@gmail.com',
-      pass: 'test1234',
+      pass: 'test1234,',
       to:   'vicvhs@gmail.com',
       subject: 'deploy completado',
   });
@@ -37,8 +37,8 @@ app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
-function deploy(res){
-  childProcess.exec('./deploy.sh', function(err, stdout, stderr){
+function deploy(res, script){
+  childProcess.exec(script, function(err, stdout, stderr){
       if (err) {
         console.error(err);
         return res.sendStatus(500);
